@@ -1,0 +1,17 @@
+{
+  "name": "yarnswush",
+  "version": "1.0.0",
+  "description": "Yarnswush will help you switch to yarn from npm",
+  "main": "yarnswush.js",
+  "author": "Mykel Koded",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
