@@ -1,6 +1,6 @@
 {
   "name": "yarnswush",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yarnswush will help you switch to yarn from npm",
   "main": "yarnswush.js",
   "author": "Mykel Koded",
@@ -8,7 +8,10 @@
   "devDependencies": {
     "jest": "^25.1.0"
   },
-  "keywords": ["yarn", "switch to yarn"],
+  "keywords": [
+    "yarn",
+    "switch to yarn"
+  ],
   "scripts": {
     "test": "jest --watchAll",
     "postinstall": "echo 'npm () { yarnswush \"$@\"}' >> ~/.zshrc && echo 'npm () { yarnswush \"$@\"}' >> ~/.bashrc"
