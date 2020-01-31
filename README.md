@@ -5,23 +5,19 @@
  \_/\__,_|_|  |_| |_\__/ \_/\_/  \__,_|___/_| |_|
                                                  
 ```
-# YARNSwish
-#### Yarnswish will help you switch to [Yarn](https://yarnpkg.com/) from using [Npm](http://npmjs.com/) by subsituting you npm commands for yarn alternatives. 
+# YARNSwush
+#### Yarnswush will help you switch to [Yarn](https://yarnpkg.com/) from using [Npm](http://npmjs.com/) by subsituting you npm commands for yarn alternatives. 
 
-Yarnswish is a small utility I hastily and badly wrote to distract myself from some work I am supposed to submit in 24 hours. Cases where it can be helpful are
+Yarnswush is a small utility I hastily and badly wrote to distract myself from some work I am supposed to submit in 24 hours. Cases where it can be helpful are
 - Copying and pasting NPM cli commands from a website to a terminal and running it.
-
+ 
 ## Installing
 If you are using BASH
 ```bash
-$ somecommandhere >> .bashrc 
+$ yarn global add yarnswush
 
 ```
 
-if you are using ZSH
-```bash
-$ somecommandhere >> .zshrc
-```
 
 It currently covers 
 - npm install :- save and save dev.
