@@ -9,9 +9,16 @@
     "jest": "^25.1.0"
   },
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "postinstall": "echo 'npm () { yarnswush \"$@\"}' >> ~/.zshrc && echo 'npm () { yarnswush \"$@\"}' >> ~/.bashrc"
   },
   "dependencies": {
-    "chai": "^4.2.0"
-  }
+    "chai": "^4.2.0",
+    "chalk": "^3.0.0",
+    "ora": "^4.0.3"
+  },
+  "bin": {
+    "yarnswush": "./bin/global.js"
+  },
+  "preferGlobal": true
 }

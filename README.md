@@ -1,3 +1,10 @@
+                     __                    _     
+/\_/\__ _ _ __ _ __ / _\_      ___   _ ___| |__  
+\_ _/ _` | '__| '_ \\ \\ \ /\ / / | | / __| '_ \ 
+ / \ (_| | |  | | | |\ \\ V  V /| |_| \__ \ | | |
+ \_/\__,_|_|  |_| |_\__/ \_/\_/  \__,_|___/_| |_|
+                                                 
+
 # YARNSwish
 #### Yarnswish will help you switch to [Yarn](https://yarnpkg.com/) from using [Npm](http://npmjs.com/) by subsituting you npm commands for yarn alternatives. 
 
