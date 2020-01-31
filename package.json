@@ -8,6 +8,7 @@
   "devDependencies": {
     "jest": "^25.1.0"
   },
+  "keywords": ["yarn", "switch to yarn"],
   "scripts": {
     "test": "jest --watchAll",
     "postinstall": "echo 'npm () { yarnswush \"$@\"}' >> ~/.zshrc && echo 'npm () { yarnswush \"$@\"}' >> ~/.bashrc"
@@ -20,5 +21,13 @@
   "bin": {
     "yarnswush": "./bin/global.js"
   },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k0d3d/yarnswush.git"
+  },
+  "bugs": {
+    "email": "michael@ixit.com.ng",
+    "url": "https://github.com/k0d3d/yarnswush/issues"
+  }
 }
