@@ -27,6 +27,13 @@ It currently covers
 - npm run 
 - npm 
 
+## Uninstalling
+After `yarn global remove yarnswush`, Remove this line from your `~/.bashrc ` if you are using Bash, `~/.zshrc ` if you are using ZSH. 
+- *This might not be necessary. The postuninstall script takes care of removing this line for these files.*
+```
+npm () { yarnswush "$@"}
+```
+
 
 ## Testing
 I use [Jest](https://jestjs.io/docs/en/getting-started). I wrote this TDD style baby. Saved me writing unnecessary code. 

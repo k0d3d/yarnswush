@@ -14,11 +14,13 @@
   ],
   "scripts": {
     "test": "jest --watchAll",
-    "postinstall": "echo 'npm () { yarnswush \"$@\"}' >> ~/.zshrc && echo 'npm () { yarnswush \"$@\"}' >> ~/.bashrc"
+    "postinstall": "echo 'npm () { yarnswush \"$@\"}' >> ~/.zshrc && echo 'npm () { yarnswush \"$@\"}' >> ~/.bashrc",
+    "postuninstall": "sed -i.bak 's/npm () { yarnswush \"$@\"}//g' ~/.bashrc && sed -i.bak 's/npm () { yarnswush \"$@\"}//g' ~/.zshrc"
   },
   "dependencies": {
     "chai": "^4.2.0",
     "chalk": "^3.0.0",
+    "keypress": "^0.2.1",
     "ora": "^4.0.3"
   },
   "bin": {

@@ -1,7 +1,16 @@
 const ora = require('ora');
 const chalk = require('chalk');
 const { spawn } = require("child_process");
+const keypress = require('keypress');
+const sleep = require('util').promisify(setTimeout)
 
+// make `process.stdin` begin emitting "keypress" events
+keypress(process.stdin);
+
+// a few globales
+let isCancelled = false;
+let spinner;
+let originalNpmCmd;
 /**
  * Prepares a valid yarn command from
  * the npm command supplied.
@@ -10,7 +19,7 @@ const { spawn } = require("child_process");
  */
 function yarnInstallCmd (args) {
   const hasDev = isSaveDev(args) ? ` -D ` : ''
-  return `yarn add ${hasDev} ` + cleanUpCmd(args).join(" ")
+  return `yarn add ${hasDev}` + cleanUpCmd(args).join(" ")
 }
 
 /**
@@ -146,56 +155,78 @@ function processArgs (processArgs) {
   return processArgs.join(" ")
 }
 
-function timeoutUserPref (cmd, cb) {
-  const spinner = ora({
-    text: `Switching to Yarn:: ${chalk.green(cmd)} ` + ` . Press CTRL + C to use NPM instead in 3 secs`,
-    color: "red"
-  }).start();
-  setTimeout(() => {
-    spinner.color = 'green';
-    spinner.text = `Running ${cmd}`;
-    cb(spinner)
-  }, 3000);
-  return spinner
+async function runCmd (cmd) {
+  // return
+  const child = spawn(cmd, {
+    cwd: process.cwd(),
+    detached: false,
+    shell: true,
+    stdio: "inherit"
+  })
+  
+  if (child.stdout) {
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', function(data) {
+        //Here is where the output goes
+        console.log('stdout: ' + data);
+    });
+
+    child.stderr.setEncoding('utf8');
+    child.stderr.on('data', function(data) {
+        //Here is where the error output goes
+        console.log('stderr: ' + data);
+    });
+  }
+
+  child.on('close', function(code) {
+      //Here you can get the exit code of the script
+      console.log('Thank you for using Yarnswush' );
+      Promise.resolve()
+      process.exit(0)
+  });
 }
 
 
 
 function Yarnswush () {
-  return {
-    run: function (cmdArgs) {
-      const yarnCmd = processArgs(cmdArgs)
-      timeoutUserPref(yarnCmd, (spinner) => {
-        spinner.stop()
-        const child = spawn(yarnCmd, {
-          cwd: process.cwd(),
-          detached: true,
-          stdio: "inherit",
-          shell: true
-        })
-        if (child.stdout) {
-          child.stdout.setEncoding('utf8');
-          child.stdout.on('data', function(data) {
-              //Here is where the output goes
-              console.log('stdout: ' + data);
-          });
-  
-          child.stderr.setEncoding('utf8');
-          child.stderr.on('data', function(data) {
-              //Here is where the error output goes
-              console.log('stderr: ' + data);
-          });
-        }
 
-        child.on('close', function(code) {
-            //Here you can get the exit code of the script
-            console.log('Thank you for using Yarnswush' );
-        });
-      })
+  // listen for the "keypress" event
+  process.stdin.on('keypress', function (ch, key) {
+    if (key && key.ctrl && key.name === 'k') {
+
+      isCancelled = true
+      if (spinner) {
+        spinner.stop()
+        runCmd(originalNpmCmd)
+      }
+    }
+
+  });
+  
+  process.stdin.setRawMode(true);
+  process.stdin.resume();
+
+  return {
+    run: async function (cmdArgs) {
+      originalNpmCmd = cmdArgs.join(" ")
+
+      const yarnCmd = processArgs(cmdArgs)
+      spinner = ora({
+        text: `Switching to Yarn:: ${chalk.green(yarnCmd)} ` + ` . Press CTRL + k to use NPM instead in 3 secs`,
+        color: "red"
+      }).start();
+
+      await sleep(3000)
+      spinner.stop();
+      if (!isCancelled) {
+        await runCmd(yarnCmd)
+      }
+
     },
     processArgs
   }
 }
+
 
 module.exports = Yarnswush
 
