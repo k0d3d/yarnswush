@@ -9,7 +9,7 @@
 #### Yarnswush will help you switch to [Yarn](https://yarnpkg.com/) from using [Npm](http://npmjs.com/) by subsituting you npm commands for yarn alternatives. 
 
 Yarnswush is a small utility I hastily and badly wrote to distract myself from some work I am supposed to submit in 24 hours. Cases where it can be helpful are
-- Copying and pasting NPM cli commands from a website to a terminal and running it.
+- Copying and pasting NPM commands from a website to a terminal and running it with Yarn.
  
 ## Installing
 If you are using BASH
@@ -17,6 +17,8 @@ If you are using BASH
 $ yarn global add yarnswush
 
 ```
+Then run any npm command. eg. `npm i keypress`;
+![preview](preview.gif)
 
 
 It currently covers 
@@ -42,3 +44,8 @@ Install yarn globally and run Jest
 $ yarn global add jest
 $ jest ./index.test.js
 ```
+
+## Changelog
+- v1.2.0
+  - Postuninstall script removes yarnswush from shell files.
+  - Fix Ctrl + k to use NPM command instead.
