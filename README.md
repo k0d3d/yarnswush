@@ -8,7 +8,7 @@
 # YARNSwush
 #### Yarnswush will help you switch to [Yarn](https://yarnpkg.com/) from using [Npm](http://npmjs.com/) by subsituting you npm commands for yarn alternatives. 
 
-Yarnswush is a small utility I hastily and badly wrote to distract myself from some work I am supposed to submit in 24 hours. Cases where it can be helpful are
+Cases where it can be helpful are
 - Copying and pasting NPM commands from a website to a terminal and running it with Yarn.
  
 ## Installing
@@ -33,7 +33,7 @@ It currently covers
 After `yarn global remove yarnswush`, Remove this line from your `~/.bashrc ` if you are using Bash, `~/.zshrc ` if you are using ZSH. 
 - *This might not be necessary. The postuninstall script takes care of removing this line for these files.*
 ```
-npm () { yarnswush "$@"}
+npm () { yarnswush "$@"; }
 ```
 
 
@@ -46,6 +46,8 @@ $ jest ./index.test.js
 ```
 
 ## Changelog
+- v1.2.1
+  - Fixed bash function in .bashrc file
 - v1.2.0
   - Postuninstall script removes yarnswush from shell files.
   - Fix Ctrl + k to use NPM command instead.
