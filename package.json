@@ -1,6 +1,6 @@
 {
   "name": "yarnswush",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Yarnswush will help you switch to yarn from npm",
   "main": "yarnswush.js",
   "author": "Mykel Koded",
